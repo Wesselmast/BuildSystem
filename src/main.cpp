@@ -2,6 +2,12 @@
 #include "print.h"
 #include "file.h"
 
+/* Todo:
+    - Log the time it takes to compile and link
+    - Increase speed, it's very slow
+      - Multithreading
+*/
+
 bool compile_line(const std::string& line) {
   working_line(line.c_str(), COLOR_MAGENTA, STYLE_BOLD, "COMPILING  ", COLOR_YELLOW, STYLE_BOLD);
   rm_last_line();

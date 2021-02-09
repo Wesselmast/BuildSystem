@@ -3,6 +3,13 @@
 #include <dirent.h>
 #include <string.h>
 
+#ifndef WEXITSTATUS
+# define WEXITSTATUS(stat_val) ((unsigned int) (stat_val) >> 8)
+#endif
+#ifndef WIFEXITED
+# define WIFEXITED(stat_val) (((stat_val) & 255) == 0)
+#endif
+
 bool parse_directory(const char* name, std::vector<std::string>& files) {
   DIR* dir = opendir(name);
   if(!dir) {
@@ -31,10 +38,11 @@ bool parse_directory(const char* name, std::vector<std::string>& files) {
 
 bool execute_cmd(const char* cmd) {
   FILE* pipe = popen(cmd, "r"); 
-  int result = pclose(pipe);
-  if(WIFEXITED(result)) {
-    return !(bool)WEXITSTATUS(result);
-  }
-  return true;
+//  int result = pclose(pipe);
+//  if(WIFEXITED(result)) {
+//    return !(bool)WEXITSTATUS(result);
+//  }
+  
+  return !pclose(pipe);
 }
 

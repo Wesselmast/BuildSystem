@@ -1,6 +1,7 @@
-#include <X11/Xlib.h>
-#include <GL/glx.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 void do_something() {
-  Display* d = XOpenDisplay(0);
+  glBegin(GL_TRIANGLES);
+  glEnd();
 }
