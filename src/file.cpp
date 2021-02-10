@@ -38,11 +38,6 @@ bool parse_directory(const char* name, std::vector<std::string>& files) {
 
 bool execute_cmd(const char* cmd) {
   FILE* pipe = popen(cmd, "r"); 
-//  int result = pclose(pipe);
-//  if(WIFEXITED(result)) {
-//    return !(bool)WEXITSTATUS(result);
-//  }
-  
   return !pclose(pipe);
 }
 
